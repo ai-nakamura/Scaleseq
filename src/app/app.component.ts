@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'scaleseq';
+
+  hello() {
+    console.log("Hello from Scaleseq!");
+  }
 }
