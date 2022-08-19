@@ -8,14 +8,14 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 export class SliderComponent implements OnInit {
   @Output() newValueEvent = new EventEmitter<number>();
 
-  @Input() value: number = 10;
+  @Input() value: number = 0;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   setNewValue(newValue: string): void {
-    this.value = parseInt(newValue, 10);
-    this.newValueEvent.emit(this.value);
+    const value = parseInt(newValue, 10);
+    this.newValueEvent.emit(value);
   }
 }
