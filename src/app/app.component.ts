@@ -7,8 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'scaleseq';
+  freq = 10;
 
   hello() {
     console.log("Hello from Scaleseq!");
+    console.log("freqValue is", this.freq);
   }
+
 }
