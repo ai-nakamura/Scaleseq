@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title: string = 'scaleseq';
-  freq: number = 10;
   cardWasClicked: boolean = false;
+  freq: number = 10;
+  title: string = 'scaleseq';
 
   hello(wasClicked: boolean): void {
     console.log('Hello from Scaleseq!');

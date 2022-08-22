@@ -6,9 +6,9 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./slider.component.scss'],
 })
 export class SliderComponent implements OnInit {
-  @Output() newValueEvent = new EventEmitter<number>();
-
   @Input() value: number = 0;
+
+  @Output() newValueEvent = new EventEmitter<number>();
 
   constructor() {}
 
