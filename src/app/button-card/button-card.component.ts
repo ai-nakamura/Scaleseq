@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-button-card',
@@ -6,14 +6,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./button-card.component.scss'],
 })
 export class ButtonCardComponent implements OnInit {
-  @Input() onClick: Function = () => {};
-  @Input() freq: number = 0;
+  @Output() clicked: EventEmitter<boolean> =  new EventEmitter<boolean>();
+  show: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  click() {
-    this.onClick(this.freq);
+  click(): void {
+    this.show = true;
+    this.clicked.emit(this.show);
   }
 }

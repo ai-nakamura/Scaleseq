@@ -1,7 +1,13 @@
 <div class="content" role="main">
-  <app-slider [value]="freq" (newValueEvent)="freq=$event"></app-slider>
+  <app-slider [value]="freq" (newValueEvent)="freq = $event"></app-slider>
 
-  <app-button-card [freq]="freq" [onClick]="hello"></app-button-card>
+  <app-button-card
+    (clicked)="hello($event)"
+  ></app-button-card>
+
+  <div>hello</div>
+  <br>
+  <div *ngIf="cardWasClicked">Frequency is: {{ this.freq }}</div>
 
   <svg
     id="clouds"

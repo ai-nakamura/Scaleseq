@@ -17,6 +17,6 @@ import { ButtonCardComponent } from './button-card/button-card.component';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
