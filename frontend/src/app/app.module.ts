@@ -1,20 +1,23 @@
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SliderComponent } from './slider/slider.component';
+import { AppRoutingModule } from './app-routing.module';
 import { ButtonCardComponent } from './button-card/button-card.component';
+import { SliderComponent } from './slider/slider.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SliderComponent,
-    ButtonCardComponent
+    ButtonCardComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
