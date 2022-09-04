@@ -1,8 +1,11 @@
+<label for="slider">{{sliderTitle}}</label>
+<br>
 <input
+  #slider
+  id="slider"
   type="range"
-  min="1"
-  max="100"
+  [min]="min"
+  [max]="max"
   [value]="value"
-  #freqSlider
-  (input)="setNewValue(freqSlider.value)"
+  (input)="setNewValue(slider.value)"
 />
