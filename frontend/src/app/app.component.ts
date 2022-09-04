@@ -32,8 +32,8 @@ export class AppComponent {
     httpService.setUrl(this.url);
   }
 
-  getTest() {
-    this.httpService.getCall().subscribe((data: string) => {
+  getTest(options: any) {
+    this.httpService.getCall(options).subscribe((data: string) => {
       this.testString = data;
       console.log(this.testString);
     });
@@ -47,6 +47,11 @@ export class AppComponent {
 
     this.cardWasClicked = wasClicked;
     console.log(this.cardWasClicked);
-    this.getTest();
+    const options = {
+      freq: this.freq,
+      duration: this.duration,
+      scaleType: this.scaleType
+    }
+    this.getTest(options);
   }
 }

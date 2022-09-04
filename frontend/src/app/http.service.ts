@@ -24,14 +24,15 @@ export class HttpService {
     this.url = url;
   }
 
-  getCall(): Observable<string> {
+  getCall(options: any): Observable<string> {
     const getOptions = {
       observe: 'body',
+      params: options,
       responseType: 'text',
     } as const;
 
     // TODO: replace with real Observable call
     // return from(['hi', 'hello']);
-    return this.http.get(this.url, getOptions);
+    return this.http.get(this.url + "/generate", getOptions);
   }
 }
