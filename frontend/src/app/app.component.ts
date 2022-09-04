@@ -9,7 +9,7 @@ import {HttpService} from "./http.service";
 export class AppComponent {
   cardWasClicked: boolean = false;
   title: string = 'scaleseq';
-  url: string = 'http://localhost:5000';
+  baseUrl: string = 'http://localhost:5000';
 
   // Frequency
   minFreq = 220.0;
@@ -29,7 +29,7 @@ export class AppComponent {
   testString: string = '';
 
   constructor(private httpService: HttpService) {
-    httpService.setUrl(this.url);
+    httpService.setBaseUrl(this.baseUrl);
   }
 
   getTest(options: any) {

@@ -20,19 +20,15 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
-  setUrl(url: string) {
+  setBaseUrl(url: string) {
     this.url = url;
   }
 
   getCall(options: any): Observable<string> {
-    const getOptions = {
+    return this.http.get(this.url + "/generate", {
       observe: 'body',
       params: options,
       responseType: 'text',
-    } as const;
-
-    // TODO: replace with real Observable call
-    // return from(['hi', 'hello']);
-    return this.http.get(this.url + "/generate", getOptions);
+    });
   }
 }
