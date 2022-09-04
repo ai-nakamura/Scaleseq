@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ButtonCardComponent } from './button-card/button-card.component';
 import { SliderComponent } from './slider/slider.component';
+import { RadioComponent } from './radio/radio.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { SliderComponent } from './slider/slider.component';
     AppComponent,
     SliderComponent,
     ButtonCardComponent,
+    RadioComponent,
   ],
   imports: [
     BrowserModule,

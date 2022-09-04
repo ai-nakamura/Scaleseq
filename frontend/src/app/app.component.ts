@@ -8,10 +8,24 @@ import {HttpService} from "./http.service";
 })
 export class AppComponent {
   cardWasClicked: boolean = false;
-  freq: number = 10;
   title: string = 'scaleseq';
-
   url: string = 'http://localhost:5000';
+
+  // Frequency
+  minFreq = 220.0;
+  maxFreq = 1000.0;
+  freq: number = 440.0;
+
+  // Scale type
+  scaleTypes = ['major', 'minor'];
+  scaleType = this.scaleTypes[0];
+
+  // Duration in seconds
+  minDuration = 0.5;
+  maxDuration = 10.0;
+  duration = 1.0;
+
+
   testString: string = '';
 
   constructor(private httpService: HttpService) {
@@ -27,7 +41,9 @@ export class AppComponent {
 
   hello(wasClicked: boolean): void {
     console.log('Hello from Scaleseq!');
-    console.log('freqValue is', this.freq);
+    console.log('freqValue: ', this.freq);
+    console.log('duration: ', this.duration);
+    console.log('scaleType: ', this.scaleType);
 
     this.cardWasClicked = wasClicked;
     console.log(this.cardWasClicked);
