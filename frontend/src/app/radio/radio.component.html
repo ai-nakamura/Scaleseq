@@ -1,0 +1,21 @@
+<!--<div class="form-check">-->
+<!--  <input class="form-check-input" type="radio" name="scaleType" id="scaleTypeMajor" checked>-->
+<!--  <label class="form-check-label" for="scaleTypeMajor">-->
+<!--    Major-->
+<!--  </label>-->
+<!--</div>-->
+<!--<div class="form-check">-->
+<!--  <input class="form-check-input" type="radio" name="scaleType" id="scaleTypeMinor">-->
+<!--  <label class="form-check-label" for="scaleTypeMinor">-->
+<!--    Minor-->
+<!--  </label>-->
+<!--</div>-->
+
+<div>
+  <div *ngFor="let option of options">
+    <input type="radio" name="radioGroup" id="value" [checked]="option == default" (click)="setNewValue(option)">
+    <label for="value">
+      {{ option }}
+    </label>
+  </div>
+</div>
