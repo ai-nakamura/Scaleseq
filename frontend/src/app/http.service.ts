@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {from, Observable, of, throwError} from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 type Options = {
   headers?: { [header: string]: string | string[] };
@@ -24,10 +23,10 @@ export class HttpService {
     this.url = url;
   }
 
-  getCall(options: any): Observable<string> {
-    return this.http.get(this.url + "/generate", {
+  getCall(params: any): Observable<string> {
+    return this.http.get(this.url + '/generate', {
       observe: 'body',
-      params: options,
+      params,
       responseType: 'text',
     });
   }

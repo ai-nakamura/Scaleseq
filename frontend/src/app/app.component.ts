@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {HttpService} from "./http.service";
+import { HttpService } from './http.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,7 @@ export class AppComponent {
   // Duration in seconds
   minDuration = 0.5;
   maxDuration = 10.0;
-  duration = 1.0;
+  duration = 0.5;
 
   testString: string = '';
 
@@ -31,8 +31,8 @@ export class AppComponent {
     httpService.setBaseUrl(this.baseUrl);
   }
 
-  getTest(options: any) {
-    this.httpService.getCall(options).subscribe((data: string) => {
+  getSamples(params: any) {
+    this.httpService.getCall(params).subscribe((data: string) => {
       this.testString = data;
       console.log(this.testString);
     });
@@ -40,17 +40,13 @@ export class AppComponent {
 
   hello(wasClicked: boolean): void {
     console.log('Hello from Scaleseq!');
-    console.log('freqValue: ', this.freq);
-    console.log('duration: ', this.duration);
-    console.log('scaleType: ', this.scaleType);
 
     this.cardWasClicked = wasClicked;
-    console.log(this.cardWasClicked);
-    const options = {
+    const params = {
       freq: this.freq,
       duration: this.duration,
-      scaleType: this.scaleType
-    }
-    this.getTest(options);
+      scaleType: this.scaleType,
+    };
+    this.getSamples(params);
   }
 }

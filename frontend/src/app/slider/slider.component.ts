@@ -7,7 +7,6 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class SliderComponent implements OnInit {
   @Input() sliderTitle: string = '';
-
   @Input() value: number = 0;
   @Input() min: number = 0;
   @Input() max: number = 100;
