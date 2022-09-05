@@ -25,7 +25,6 @@ export class AppComponent {
   maxDuration = 10.0;
   duration = 1.0;
 
-
   testString: string = '';
 
   constructor(private httpService: HttpService) {
