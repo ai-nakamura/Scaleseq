@@ -2,25 +2,30 @@
 Website that generates a custom twelve-tone equal temperament scale
 according to a given frequency
 
-## Current functionality
-When you click the card titles 'Scaleseq', 
-logs will be printed in the console of the inspect panel.
+### Current functionality
+There are a set of controllers that allow you to choose a frequency, scale type, and duration.
 
-### To run
+When you click the card titled 'Scaleseq':
+- Logs will be printed in the console of the inspect panel
+- A text box shows with the chosen frequency, scale type, and duration
+- A tone is generated where the backend is being served
+
+## To run
 
 #### Backend
 Navigate to `/backend` folder and run the following command.
-Must have Python3 and Flask installed.
+
+Dependencies: Python3, Flask, numpy, pyAudio
 ```
-flask --app main run
+flask --app server run
 ```
-This will run the python Flask server on port `5000`
+This will run the Python Flask server on port `5000`
 
 #### Frontend
 Navigate to `/frontend` folder and run the following command.
 Must have Angular CLI installed.
 ```
-ng serve
+npm start
 ```
 This will run the Angular server on port `4200`
 
