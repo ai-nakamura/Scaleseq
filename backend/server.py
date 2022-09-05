@@ -20,25 +20,26 @@ def hello_world():
 
 @app.get("/generate")
 def data_test():
-    resp = make_response("hello_world", 200)
-    resp.headers["Access-Control-Allow-Origin"] = "http://localhost:4200"
-
+    # parse incoming data
     tonic = float(request.args['freq'])
     duration = float(request.args['duration'])
     scale_type = major_scale if request.args['scaleType'] == 'major' else minor_scale
     print(tonic, duration, scale_type)
 
+    # make a list of numpy.ndarray for each note in the chord
+    # each chord has: octave below, the root, the third, the fifth, and octave above
     fm = FrequencyMaker(tonic, scale_type, duration=duration)
     fm.change_tonic(tonic)
     test_chord = fm.chord_stacker(0)
     test_chord_sine_waves = [Frequency_Player.sample_maker(note, volume=0.5, duration=duration) for note in test_chord]
 
+    # play the notes where the backend is being served
     for wave in test_chord_sine_waves:
         Frequency_Player.stream_player(wave, volume=0.5, duration=duration)
 
-    # to_play = fp.sample_maker(note, volume, fs, duration)
-    # fp.stream_player(to_play, volume, fs, duration)
-
-
+    # map ndarray list made by numpy in to regular lists, so we can send it to front end
+    body = [ndArray.tolist() for ndArray in test_chord_sine_waves]
+    resp = make_response(body, 200)
+    resp.headers["Access-Control-Allow-Origin"] = "http://localhost:4200"
 
     return resp
