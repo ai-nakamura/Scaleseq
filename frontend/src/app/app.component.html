@@ -1,13 +1,13 @@
 <div class="content" role="main">
 
 <!-- Controllers -->
-  <app-slider (newValueEvent)="freq = $event" [max]="maxFreq" [min]="minFreq" [value]="freq"
-              sliderTitle="Frequency Slider"></app-slider>
+  <app-slider (bySliding)="freq = $event" [max]="maxFreq" [min]="minFreq" [value]="freq"
+              title="Frequency Slider"></app-slider>
 
   <br><br>
 
-  <app-slider (newValueEvent)="duration = $event" [max]="maxDuration" [min]="minDuration" [value]="duration"
-              sliderTitle="Duration Slider"></app-slider>
+  <app-slider (bySliding)="duration = $event" [max]="maxDuration" [min]="minDuration" [value]="duration"
+              title="Duration Slider"></app-slider>
 
   <br><br>
 

@@ -1,4 +1,4 @@
-<label for="slider">{{sliderTitle}}</label>
+<label for="slider">{{title}}</label>
 <br>
 <input
   #slider
@@ -7,5 +7,5 @@
   [min]="min"
   [max]="max"
   [value]="value"
-  (input)="setNewValue(slider.value)"
+  (input)="onSlide(slider.value)"
 />
