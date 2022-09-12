@@ -38,10 +38,10 @@ export class AppComponent {
     });
   }
 
-  hello(wasClicked: boolean): void {
+  onButtonCardClick(): void {
     console.log('Hello from Scaleseq!');
 
-    this.cardWasClicked = wasClicked;
+    this.cardWasClicked = !this.cardWasClicked;
     const params = {
       freq: this.freq,
       duration: this.duration,

@@ -45,7 +45,7 @@ describe('AppComponent', () => {
     httpService.getCall.and.returnValue(of(''));
 
     // Act
-    app.hello(true);
+    app.onButtonCardClick();
 
     // Assert
     expect(httpService.getCall).toHaveBeenCalled();
