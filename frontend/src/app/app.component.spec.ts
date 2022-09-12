@@ -13,7 +13,7 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let httpService: jasmine.SpyObj<HttpService>;
   beforeEach(() => {
-    httpService = jasmine.createSpyObj('HttpService', ['getCall', 'setBaseUrl']);
+    httpService = jasmine.createSpyObj('HttpService', ['fetchFrequencies', 'setBaseUrl']);
 
     TestBed.configureTestingModule({
       declarations: [
@@ -42,13 +42,13 @@ describe('AppComponent', () => {
   it('should make http call when "hello" is called', () => {
     // Arrange
     const app = fixture.componentInstance;
-    httpService.getCall.and.returnValue(of(''));
+    httpService.fetchFrequencies.and.returnValue(of([[0.000001], [0.000002]]));
 
     // Act
     app.onButtonCardClick();
 
     // Assert
-    expect(httpService.getCall).toHaveBeenCalled();
+    expect(httpService.fetchFrequencies).toHaveBeenCalled();
   });
 
   it('should receive data from http call when getSamples runs', () => {
@@ -59,12 +59,12 @@ describe('AppComponent', () => {
       duration: 1,
       scaleType: 'major',
     };
-    httpService.getCall.and.returnValue(of('[0.00001, 0.0002]'));
+    httpService.fetchFrequencies.and.returnValue(of([[0.00001, 0.0002], [1, 2]]));
 
     // Act
     app.getSamples(params);
 
     // Assert
-    expect(app.testString).toContain('0.00001');
+    expect((app.freqData ?? [])[0]).toContain(0.00001);
   });
 });

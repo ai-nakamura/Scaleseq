@@ -1,33 +1,45 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
-type Options = {
-  headers?: { [header: string]: string | string[] };
-  observe?: 'body' | 'events' | 'response';
-  params?: { [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean> };
-  reportProgress?: boolean;
-  responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
-  withCredentials?: boolean;
+// TODO: Make utility file for all Types and Helper functions
+type FrequencyParams = {
+  freq: number;
+  duration: number;
+  scaleType: 'major' | 'minor';
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
-  private url: string = '';
+  private baseUrl: string = '';
 
   constructor(private http: HttpClient) {}
 
   setBaseUrl(url: string) {
-    this.url = url;
+    this.baseUrl = url;
   }
 
-  getCall(params: any): Observable<string> {
-    return this.http.get(this.url + '/generate', {
+  fetchFrequencies(params: FrequencyParams): Observable<number[][]> {
+    const req: Observable<string> = this.http.get(this.baseUrl + '/generate', {
       observe: 'body',
       params,
       responseType: 'text',
     });
+
+    return req.pipe(
+      map((data) => {
+        const parsedData = JSON.parse(data);
+        if (this.isFreqData(parsedData)) {
+          return parsedData;
+        }
+        throw new Error('/generate returned unknown data');
+      })
+    );
+  }
+
+  isFreqData(value: unknown): value is number[][] {
+    return Array.isArray(value) && value.every(Array.isArray) && typeof value[0][0] === 'number';
   }
 }

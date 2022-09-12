@@ -25,16 +25,18 @@ export class AppComponent {
   maxDuration = 10.0;
   duration = 0.5;
 
-  testString: string = '';
+  // testString: string = '';
+  freqData: number[][] | undefined;
 
   constructor(private httpService: HttpService) {
     httpService.setBaseUrl(this.baseUrl);
   }
 
+  // replace any with Type FrequencyParams when I pull it from HttpService
   getSamples(params: any) {
-    this.httpService.getCall(params).subscribe((data: string) => {
-      this.testString = data;
-      console.log(this.testString);
+    const resp = this.httpService.fetchFrequencies(params);
+    resp.subscribe((data) => {
+      this.freqData = data;
     });
   }
 
@@ -42,11 +44,11 @@ export class AppComponent {
     console.log('Hello from Scaleseq!');
 
     this.cardWasClicked = !this.cardWasClicked;
-    const params = {
+    const frequencyParams = {
       freq: this.freq,
       duration: this.duration,
       scaleType: this.scaleType,
     };
-    this.getSamples(params);
+    this.getSamples(frequencyParams);
   }
 }
