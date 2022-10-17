@@ -10,16 +10,23 @@ When you click the card titled 'Scaleseq':
 - A text box shows with the chosen frequency, scale type, and duration
 - A tone is generated where the backend is being served
 
-## To run
+## To run dev
+Dependencies: Python3, Flask, numpy, pyAudio
+
 
 #### Backend
-Navigate to `/backend` folder and run the following command.
+1. Navigate to `/backend` folder.
+2. Create venv by running `python3 -m venv venv`
+3. Active the venv by running `source venv/bin/activate`
+4. Install dependencies in venv by running `pip install -r requirements.txt`
+5. Run the following commands
 
-Dependencies: Python3, Flask, numpy, pyAudio
 ```
+source venv/bin/activate  # skip if you've already activated the venv
 flask --app server run
 ```
 This will run the Python Flask server on port `5000`
+
 
 #### Frontend
 Navigate to `/frontend` folder and run the following command.
@@ -31,3 +38,25 @@ This will run the Angular server on port `4200`
 
 #### View website
 Go to `http://localhost:4200` on your favorite browser
+
+
+## To deploy prod
+
+#### Backend
+1. Run `git clone https://github.com/ai-nakamura/Scaleseq.git`
+2. Navigate to `/backend` folder.
+3. Create venv by running `python3 -m venv venv`
+4. Active the venv by running `source venv/bin/activate`
+5. Install dependencies in venv by running `pip install -r requirements.txt`
+6. Run the following commands
+
+```
+source venv/bin/activate  # skip if you've already activated the venv
+export CORS_ORIGIN=http://<hostname>:80  # replace <hostname> with your own server
+flask --app server run
+```
+This will run the Python Flask server on port `5000`
+
+#### Frontend
+1. Build `dist` folder by running `ng build` in the frontend directory
+2. Copy contents of `dist/Scaleseq` to appropriate folder on web server

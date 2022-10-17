@@ -18,8 +18,8 @@ def hello_world():
 
     # resp.headers["Access-Control-Allow-Origin"] = "http://localhost:4200"  # only works in dev
     # resp.headers["Access-Control-Allow-Origin"] = "http://45.79.180.125:80"  # port 80 is default for http
-    if 'CORS_HOST' in os.environ:
-        resp.headers["Access-Control-Allow-Origin"] = os.environ['CORS_HOST']
+    if 'CORS_ORIGIN' in os.environ:
+        resp.headers["Access-Control-Allow-Origin"] = os.environ['CORS_ORIGIN']
     else:
         resp.headers["Access-Control-Allow-Origin"] = "http://localhost:4200"
     return resp
