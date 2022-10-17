@@ -9,7 +9,11 @@ import { HttpService } from './http.service';
 export class AppComponent {
   cardWasClicked: boolean = false;
   title: string = 'scaleseq';
-  baseUrl: string = 'http://localhost:5000';
+
+  // baseUrl: string = window.location.hostname + ':5000'; // 45.79.180.125:5000 --> browser adds 'http' later
+  // This is a hack. Update later to not use port 5000 but instead routes through '/api'
+  baseUrl: string = window.location.protocol + '//' + window.location.hostname+ ':5000'; // http://45.79.180.125:5000
+  // baseUrl: string = 'http://localhost:5000'; // only works in development
 
   // Frequency
   minFreq = 220.0;
