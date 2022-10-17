@@ -10,8 +10,8 @@ When you click the card titled 'Scaleseq':
 - A text box shows with the chosen frequency, scale type, and duration
 - A tone is generated where the backend is being served
 
-## To run dev
-Dependencies: Python3, Flask, numpy, pyAudio
+## To run
+Dependencies: Python3, Flask, numpy, pyAudio, C compiler
 
 
 #### Backend
@@ -41,6 +41,7 @@ Go to `http://localhost:4200` on your favorite browser
 
 
 ## To deploy prod
+If running Ubuntu 22.04, run `apt install gcc python3-dev portaudio19-dev`
 
 #### Backend
 1. Run `git clone https://github.com/ai-nakamura/Scaleseq.git`
@@ -52,8 +53,10 @@ Go to `http://localhost:4200` on your favorite browser
 
 ```
 source venv/bin/activate  # skip if you've already activated the venv
-export CORS_ORIGIN=http://<hostname>:80  # replace <hostname> with your own server
-flask --app server run
+
+# replace <hostname> with your own server
+export CORS_ORIGIN=http://<hostname>:80 
+flask --app server run --host <hostname>
 ```
 This will run the Python Flask server on port `5000`
 

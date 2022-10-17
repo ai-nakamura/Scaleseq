@@ -41,12 +41,17 @@ def data_test():
     test_chord_sine_waves = [Frequency_Player.sample_maker(note, volume=0.5, duration=duration) for note in test_chord]
 
     # play the notes where the backend is being served
-    for wave in test_chord_sine_waves:
-        Frequency_Player.stream_player(wave, volume=0.5, duration=duration)
+    if 'CORS_ORIGIN' not in os.environ:
+        for wave in test_chord_sine_waves:
+            Frequency_Player.stream_player(wave, volume=0.5, duration=duration)
 
     # map ndarray list made by numpy in to regular lists, so we can send it to front end
     body = [ndArray.tolist() for ndArray in test_chord_sine_waves]
     resp = make_response(body, 200)
-    resp.headers["Access-Control-Allow-Origin"] = "http://localhost:4200"
+
+    if 'CORS_ORIGIN' in os.environ:
+        resp.headers["Access-Control-Allow-Origin"] = os.environ['CORS_ORIGIN']
+    else:
+        resp.headers["Access-Control-Allow-Origin"] = "http://localhost:4200"
 
     return resp
