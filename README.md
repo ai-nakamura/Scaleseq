@@ -55,7 +55,7 @@ If running Ubuntu 22.04, run `apt install gcc python3-dev portaudio19-dev`
 source venv/bin/activate  # skip if you've already activated the venv
 
 # replace <hostname> with your own server
-export CORS_ORIGIN=http://<hostname>:80 
+export CORS_ORIGIN=http://<hostname>
 flask --app server run --host <hostname>
 ```
 This will run the Python Flask server on port `5000`

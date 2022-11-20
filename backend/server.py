@@ -27,11 +27,13 @@ def hello_world():
 
 @app.get("/generate")
 def data_test():
+    print('hello from the backend!')
+
     # parse incoming data
     tonic = float(request.args['freq'])
     duration = float(request.args['duration'])
     scale_type = major_scale if request.args['scaleType'] == 'major' else minor_scale
-    print(tonic, duration, scale_type)
+    # print(tonic, duration, scale_type)
 
     # make a list of numpy.ndarray for each note in the chord
     # each chord has: octave below, the root, the third, the fifth, and octave above
@@ -41,6 +43,8 @@ def data_test():
     test_chord_sine_waves = [Frequency_Player.sample_maker(note, volume=0.5, duration=duration) for note in test_chord]
 
     # play the notes where the backend is being served
+    # TODO: This is a hack. Do not try to play sound through the machine when running on a server,
+    # TODO: which is the only place I do CORS_ORIGIN='45.79.180.125'
     if 'CORS_ORIGIN' not in os.environ:
         for wave in test_chord_sine_waves:
             Frequency_Player.stream_player(wave, volume=0.5, duration=duration)
